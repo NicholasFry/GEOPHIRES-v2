@@ -1419,7 +1419,7 @@ if resoption == 1:
     Twnd = []
     try:    
         for t in range(1, len(timevector)):
-            Twnd = Twnd + [float(invertlaplace(fp, td[t], method='talbot'))]
+            Twnd = Twnd + [float(invertlaplace(fp, td[t], method='talbot'))]#invertlaplace function appears undefined here.
     except:
         print("Error: GEOPHIRES could not execute numerical inverse laplace calculation for reservoir model 1. Simulation will abort.")
         sys.exit()
