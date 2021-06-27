@@ -1154,7 +1154,7 @@ else:
         print("Provided exploration cost adjustment factor outside of range 0-10. GEOPHIRES will assume default exploration cost correlation with adjustment factor = 1.")
         ccexpladjfactor = 1
 
-#pipinglength: surface piping length (-)
+#pipinglength: surface piping length in kilometers (-)
 try:
     pipinglength = float(content[[i for i, s in enumerate(content) if 'Surface Piping Length,' in s][0]].split(',')[1].strip('\n'))
     if pipinglength < 0 or pipinglength > 100:
