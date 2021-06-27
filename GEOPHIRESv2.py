@@ -1154,7 +1154,7 @@ else:
         print("Provided exploration cost adjustment factor outside of range 0-10. GEOPHIRES will assume default exploration cost correlation with adjustment factor = 1.")
         ccexpladjfactor = 1
 
-#pipinglength: surface piping length in kilometers (-)
+#pipinglength: surface piping length in kilometers for the surface plant system (-)
 try:
     pipinglength = float(content[[i for i, s in enumerate(content) if 'Surface Piping Length,' in s][0]].split(',')[1].strip('\n'))
     if pipinglength < 0 or pipinglength > 100:
@@ -1315,12 +1315,13 @@ if enduseoption in [2,32,42,52]:
         print("Warning: No valid electricity rate provided. GEOPHIRES will assume default electricity rate ($0.07/kWh)")
         
 #heatprice: heat price (in $/kWh) to calculate additional revenue stream from heat sales in co-gen option
+#if using external techno-economic simulator for direct use/district heating, take caution not to double count the heat tariff for your operation
 if enduseoption in [31,41,51]: 
    try:
         heatprice = float(content[[i for i, s in enumerate(content) if 'Heat Rate' in s][0]].split(',')[1].strip('\n'))
         if heatprice < 0 or heatprice > 1:
             heatprice = 0.02
-            print("Warning: Provided heat rate is outside of range 0-1. GEOPHIRES will assume default heat rate ($0.02/kWh)")  
+            print("Warning: Provided heat rate is outside of range 0-1. GEOPHIRES will assume default heat rate ($0.02/kWh)")
    except:
         heatprice = 0.02
         print("Warning: No valid heat rate provided. GEOPHIRES will assume default heat rate ($0.02/kWh)")
