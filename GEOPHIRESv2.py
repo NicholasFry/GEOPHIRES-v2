@@ -1409,7 +1409,7 @@ if resoption == 1:
     # convert flowrate to volumetric rate
     q = nprod*prodwellflowrate/rhowater # m^3/s
 
-    # specify Laplace-space function
+    # specify Laplace-space function, bottom hole pressure formulation
     fp = lambda s: (1./s)*exp(-sqrt(s)*tanh((rhowater*cpwater*(q/fracnumb/fracwidth)*(fracsep/2.)/(2.*krock*fracheight))*sqrt(s)))
 
     #calculate non-dimensional time
