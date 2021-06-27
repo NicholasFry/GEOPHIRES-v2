@@ -9,6 +9,8 @@ Created on Wed Dec  6 10:34:04 2017
 #build date: December 9th 2018
 #https://github.com/kfbeckers/GEOPHIRES
 
+"""customized from fork by Nicholas Fry June 27, 2021"""
+
 #import functions
 import math
 import datetime
@@ -64,7 +66,7 @@ try:
     with open(fname, encoding='UTF-8') as f:
         content = f.readlines()    
 except:
-    print("Error: GEOPHIRES could not read input file ("+fname+") and will abort simulation.")
+    print(f"Error: GEOPHIRES could not read input file {fname} and will abort simulation.")
     sys.exit()
 
 
@@ -402,7 +404,7 @@ try:
         print("Warning: Selected Ramey Production Wellbore Model parameter not valid. GEOPHIRES will assume default production wellbore model (Ramey model active)")
 except:
     rameyoptionprod = 1
-    print("Warning: No valid Ramey Production Wellbore Model parameter provided. GEOPHIRES will assume default productino wellbore model (Ramey model active)")
+    print("Warning: No valid Ramey Production Wellbore Model parameter provided. GEOPHIRES will assume default production wellbore model (Ramey model active)")
 
 #tempdropprod: temperature drop in production well in deg. C (if Ramey model is not used)
 if rameyoptionprod == 0:
@@ -717,7 +719,7 @@ except:
 #rhorock: reservoir density (in kg/m3)
 try:
     rhorock = float(content[[i for i, s in enumerate(content) if 'Reservoir Density,' in s][0]].split(',')[1].strip('\n'))      
-    if rhorock < 100 or rhorock > 20000:
+    if rhorock < 100 or rhorock > 10000:
         rhorock = 2700
         print("Warning: Provided reservoir density outside of range 100-10000. GEOPHIRES will assume default reservoir density (2700 J/kg/K)")
 except:
