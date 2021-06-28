@@ -2117,7 +2117,7 @@ else: #all other options have power plant
         CCAPPRL = D2*maxProdTemp**2 + D1*maxProdTemp + D0  
         b = math.log(CCAPPRL/CCAPPLL)/math.log(PRL/PLL)
         a = CCAPPRL/PRL**b
-        Cplantcorrelation = 0.8*a*math.pow(np.max(ElectricityProduced),b)*np.max(ElectricityProduced)*1000./1E6 #factor 0.75 to make double flash 25% more expansive than single flash
+        Cplantcorrelation = 0.8*a*math.pow(np.max(ElectricityProduced),b)*np.max(ElectricityProduced)*1000./1E6 #factor 0.75 to make double flash 25% more expensive than single flash
         
     elif pptype == 4: #double-flash
         if (np.max(ElectricityProduced)<10.):
