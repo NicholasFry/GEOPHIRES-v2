@@ -1608,7 +1608,7 @@ elif resoption == 6:
         #print(ProdTemperature)    
         Tresoutput = np.interp(timevector*365*24*3600,SimTimes,ProdTemperature)
     except:
-        print("Error: GEOPHIRES could not import production temperature and pressure from TOUGH2 output file ("+fname+") and will abort simulation.")
+        print(f"Error: GEOPHIRES could not import production temperature and pressure from TOUGH2 output file {fname} and will abort simulation.")
         
     # define function to extract temperature profile from outfile (move up to top of script?)
 
