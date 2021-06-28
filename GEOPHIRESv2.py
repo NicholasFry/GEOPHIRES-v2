@@ -2009,8 +2009,8 @@ else:
     #Cgath = ccgathadjfactor*50-6*np.max(HeatExtracted)*1000. (GEOPHIRES v1 correlation)
     
     if impedancemodelused == 1:
-        pumphp = np.max(PumpingPower)*1341
-        numberofpumps = np.ceil(pumphp/2000) #pump can be maximum 2,000 hp
+        pumphp = np.max(PumpingPower)*1341 #1341 hp is equivalent to 1 MW
+        numberofpumps = np.ceil(pumphp/2000) #pump can be maximum 2,000 hp (1.4913MW)
         if numberofpumps == 0:
             Cpumps =0
         else:
