@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+matplotlib = "==3.4.2"
+pandas = "==1.2.4"
+numpy = "==1.19.0"
+pygmo = "==2.16.1"
+TESPy = "==0.5.0"
+CoolProp = "==6.4.0"
+shell = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

@@ -19,11 +19,12 @@ import time
 from mpmath import *
 import os
 import sys
+from app import *
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # specify path of input file
-fname = os.path.join('Examples','example4.txt')
+fname = os.path.join('Examples','modified1.txt')
 
 tic = time.time()
 #user-defined functions
@@ -1783,37 +1784,12 @@ else:
     T2 = Tenv + 273.15
     Availability = ((A-B*T0)*(T1-T2)+(B-C*T0)/2.0*(T1**2-T2**2)+C/3.0*(T1**3-T2**3)-A*T0*np.log(T1/T2))*2.2046/947.83    #MJ/kg
     
-    if pptype == 1: #Subcritical ORC
-        if (Tenv < 15.):
-            C1 = 2.746E-3
-            C0 = -8.3806E-2
-            D1 = 2.713E-3
-            D0 = -9.1841E-2
-            Tfraction = (Tenv-5.)/10.
-        else:
-            C1 = 2.713E-3
-            C0 = -9.1841E-2
-            D1 = 2.676E-3
-            D0 = -1.012E-1
-            Tfraction = (Tenv-15.)/10.
-        etaull = C1*TenteringPP + C0
-        etauul = D1*TenteringPP + D0
-        etau = (1-Tfraction)*etaull + Tfraction*etauul
-        if (Tenv < 15.):
-            C1 = 0.0894
-            C0 = 55.6
-            D1 = 0.0894
-            D0 = 62.6
-            Tfraction = (Tenv-5.)/10.
-        else:
-            C1 = 0.0894
-            C0 = 62.6
-            D1 = 0.0894
-            D0 = 69.6
-            Tfraction = (Tenv-15.)/10.
-        reinjtll = C1*TenteringPP + C0
-        reinjtul = D1*TenteringPP + D0
-        ReinjTemp = (1.-Tfraction)*reinjtll + Tfraction*reinjtul
+    if pptype == 1: #TESPy Subcritical ORC
+        reinjtll = 0
+        reinjtul = 0
+        ReinjTemp = Tinj
+        etau = .5 #placeholder
+
     elif pptype == 2: #Supercritical ORC
         if (Tenv < 15.):
             C2 = -1.55E-5             
@@ -1949,7 +1925,7 @@ else:
     
     #calculate electricity/heat
     if enduseoption == 1: #pure electricity
-        ElectricityProduced = Availability*etau*nprod*prodwellflowrate        
+        ElectricityProduced = Availability*etau*nprod*prodwellflowrate  #enthalpy multiplied by efficiency multiplied by the number of wells multiplied by the production well flow rate      
         HeatExtracted = nprod*prodwellflowrate*cpwater*(ProducedTemperature - Tinj)/1E6 #Heat extracted from geofluid [MWth]
         HeatExtractedTowardsElectricity = HeatExtracted
     elif (math.floor(enduseoption/10) == 3): #enduseoption = 3: cogen topping cycle
@@ -2367,7 +2343,7 @@ elif enduseoption == 52: #cogen split of mass flow rate
     f.write("      Electricity sales considered as extra income\n")
 
 if enduseoption == 1 or enduseoption > 2:    #there is an electricity component
-    f.write("      Average Net Electricity Production (MWe)          " + "{0:10.2f}".format(np.average(NetElectricityProduced))+"\n")
+    f.write("      Average Net Electricity Production (MWe)          " + "{0:10.2f}".format(np.average(NetElectricityProduced))+"\n")#f-string 0:10.2f is the index place of the format() value, minimum of 10 characters, then 2 digits after the decimal
 if enduseoption > 1:    #there is a direct-use component
     f.write("      Average Direct-Use Heat Production (MWth)         " + "{0:10.2f}".format(np.average(HeatProduced))+"\n")
 

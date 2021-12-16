@@ -1,0 +1,2 @@
+label;comp_type;busses;bus_param;bus_P_ref;bus_char;bus_base;design;offdesign;design_path;local_design;local_offdesign;P;P_set;P_var;eta_s;eta_s_set;eta_s_var;eta_s_char;eta_s_char_set;eta_s_char_param;pr;pr_set;pr_var;cone;cone_set
+turbine;Turbine;[];[];[];[];[];[];[];nan;False;False;-3376746.109853405;False;False;3.961499561748363;False;False;0x000001B9B6D666A0;False;m;0.23740843127979172;False;False;nan;False
