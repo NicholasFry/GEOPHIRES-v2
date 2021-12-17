@@ -156,6 +156,7 @@ def variant_3(nw):
     ax[1].set_ylabel("District heating system heat")
     fig.savefig(working_fluid + ".png")
     plt.close()
+print("This is printing from app.py for the Produced temp from GEOPHIRES: ")
 print(ProducedTemperature)
 # create base plant and supply functionalities
 plant = CHPORC("R134a", float(ProducedTemperature))

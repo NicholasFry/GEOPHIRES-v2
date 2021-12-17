@@ -1785,9 +1785,9 @@ else:
     Availability = ((A-B*T0)*(T1-T2)+(B-C*T0)/2.0*(T1**2-T2**2)+C/3.0*(T1**3-T2**3)-A*T0*np.log(T1/T2))*2.2046/947.83    #MJ/kg
     
     if pptype == 1: #TESPy Subcritical ORC
-        reinjtll = 0
-        reinjtul = 0
         ReinjTemp = Tinj
+        reinjtll = 0 #reinjection lower limit, after power cycle and field gathering system
+        reinjtul = 0
         etau = .5 #placeholder
 
     elif pptype == 2: #Supercritical ORC
